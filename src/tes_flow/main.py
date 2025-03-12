@@ -9,7 +9,7 @@ from tes_flow.crews.poem_crew.poem_crew import PoemCrew
 
 
 class PoemState(BaseModel):
-    sentence_count: int = 1
+    sentence_count: int  = 1
     poem: str = ""
 
 
@@ -34,8 +34,7 @@ class PoemFlow(Flow[PoemState]):
 
     @listen(generate_poem)
     def save_poem(self):
-        print("Saving poem")
-        return{"poem": self.state.poem, "sentence_count" : self.state.sentence_count}
+        return {"poem": self.state.poem, "sentence_count": self.state.sentence_count, "author": "Junaid"}
 
 
 def kickoff():
@@ -48,4 +47,5 @@ def plot():
     poem_flow.plot()
 
 
-
+if __name__ == "__main__":
+    kickoff()
